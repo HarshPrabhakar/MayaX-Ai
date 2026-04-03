@@ -1,4 +1,4 @@
-# 🤖 AI Detect — AI Generated Image Detection
+# 🤖 MayaX-AI Generated Image Detection
 
 ![AI Detect Banner](https://img.shields.io/badge/Project-AI%20Image%20Detection-blue?style=for-the-badge)
 ![PyTorch](https://img.shields.io/badge/PyTorch-CNN%20Model-orange?style=for-the-badge&logo=pytorch)
