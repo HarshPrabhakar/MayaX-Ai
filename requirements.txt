@@ -1,0 +1,27 @@
+# Backend (API)
+fastapi
+uvicorn
+
+# Deep Learning
+torch
+torchvision
+
+# Image Processing
+opencv-python
+Pillow
+
+# Data Handling
+numpy
+pandas
+
+# Visualization (Grad-CAM, debugging)
+matplotlib
+
+# Machine Learning utilities
+scikit-learn
+
+# File upload handling
+python-multipart
+
+# Optional but useful
+tqdm
