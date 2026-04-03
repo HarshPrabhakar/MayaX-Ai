@@ -25,3 +25,12 @@ python-multipart
 
 # Optional but useful
 tqdm
+
+# For FFT / frequency domain
+scipy
+
+# For better API handling & config
+pydantic
+
+# For frontend connection (CORS)
+fastapi[all]
