@@ -4,6 +4,7 @@ import torch
 from torchvision import transforms
 from PIL import Image
 import io
+from model.model import BetterCNN   # or whatever your class name is
 
 app = FastAPI()
 
