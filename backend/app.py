@@ -18,7 +18,8 @@ app.add_middleware(
 )
 
 # Load model
-model = torch.load("model/detector.pt", map_location=torch.device('cpu'))
+model = CNNModel()   # create model structure
+model.load_state_dict(torch.load("model/detector.pt", map_location=torch.device('cpu')))
 model.eval()
 
 # Same transform you wrote
