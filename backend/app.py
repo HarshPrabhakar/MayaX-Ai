@@ -8,7 +8,8 @@ import torch
 from torchvision import transforms
 from PIL import Image
 import io
-from model.model import BetterCNN   # or whatever your class name is
+
+from model.model import BetterCNN   # make sure this exists
 
 app = FastAPI()
 
@@ -21,12 +22,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Load model
-model = BetterCNN()   # create model structure
+# ✅ FIXED HERE
+model = BetterCNN()
 model.load_state_dict(torch.load("model/detector.pt", map_location=torch.device('cpu')))
 model.eval()
 
-# Same transform you wrote
+# Transform
 transform = transforms.Compose([
     transforms.Resize((224, 224)),
     transforms.ToTensor(),
