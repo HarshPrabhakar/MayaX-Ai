@@ -4,55 +4,52 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from fastapi import FastAPI, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+
 import torch
+import torch.nn as nn
+import torch.nn.functional as F
 from torchvision import transforms
 from PIL import Image
 import io
 
-from fastapi import FastAPI
-
+# =========================
+# INIT APP (ONLY ONCE)
+# =========================
 app = FastAPI()
 
-@app.get("/")
-def read_root():
-    return {"message": "Welcome to MayaX AI Detection!"}
+# =========================
+# CORS (for frontend)
+# =========================
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # dev only
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-# _____________________________________________-___________
-from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse
+# =========================
+# SERVE FRONTEND
+# =========================
+frontend_path = os.path.join(os.path.dirname(__file__), "../frontend")
 
-# Mount the frontend folder
-app.mount("/static", StaticFiles(directory="../frontend"), name="static")
+app.mount("/static", StaticFiles(directory=frontend_path), name="static")
 
-# Optional: root route to serve index.html
 @app.get("/")
 async def root():
-    return FileResponse("../frontend/index.html")
-# _____________________________________________-___________
+    return FileResponse(os.path.join(frontend_path, "index.html"))
 
-from fastapi.middleware.cors import CORSMiddleware
+# =========================
+# DEVICE (GPU / CPU)
+# =========================
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+print("Using device:", device)
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # allow all for dev
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-app = FastAPI()
-
-# Allow frontend connection
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-import torch.nn as nn
-
+# =========================
+# MODEL
+# =========================
 class BetterCNN(nn.Module):
     def __init__(self):
         super(BetterCNN, self).__init__()
@@ -81,29 +78,40 @@ class BetterCNN(nn.Module):
 
         return x
 
-# ✅ FIXED HERE
+# =========================
+# LOAD MODEL (GPU READY)
+# =========================
 model = BetterCNN()
-model.load_state_dict(torch.load("model/detector.pt", map_location=torch.device('cpu')))
+
+model_path = os.path.join(os.path.dirname(__file__), "model/detector.pt")
+model.load_state_dict(torch.load(model_path, map_location=device))
+
+model.to(device)
 model.eval()
 
-# Transform
+# =========================
+# TRANSFORM
+# =========================
 transform = transforms.Compose([
     transforms.Resize((224, 224)),
     transforms.ToTensor(),
     transforms.Normalize([0.5,0.5,0.5], [0.5,0.5,0.5])
 ])
 
+# =========================
+# PREDICT API
+# =========================
 @app.post("/predict")
 async def predict(file: UploadFile = File(...)):
     image_bytes = await file.read()
     image = Image.open(io.BytesIO(image_bytes)).convert("RGB")
     
-    image = transform(image).unsqueeze(0)
+    image = transform(image).unsqueeze(0).to(device)
 
     with torch.no_grad():
         output = model(image)
         _, predicted = torch.max(output, 1)
 
     result = "Fake" if predicted.item() == 0 else "Real"
-    
+
     return {"prediction": result}
