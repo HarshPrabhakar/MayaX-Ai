@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AI Detect — Synthetic Media Detection | Harsh Prabhakar</title>
+<link href="style.css" rel="stylesheet"/>
+</head>
+<body>
+
+<!-- Background -->
+<div class="bg-fixed">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+</div>
+<div class="grid-overlay"></div>
+
+<!-- ── NAVBAR ── -->
+<nav>
+  <a href="#home" class="nav-logo">
+    <div class="logo-shield">🛡️</div>
+    <div class="logo-text">
+      AI Detect
+      <small>Synthetic Media Detection</small>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="#home" class="active">Home</a>
+    <a href="#detect">Detect Image</a>
+    <a href="#about">About Project</a>
+    <a href="#how-it-works">How It Works</a>
+    <a href="#team">Team</a>
+    <a href="#detect" class="nav-cta">Upload Image</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="home">
+  <div class="hero-content">
+    <div class="hero-badge"><span></span> Final Year B.Tech CSE (AI) Project</div>
+    <h1>Detect <em>Real vs<br/>AI-Generated</em> Images</h1>
+    <p>An AI-powered system that analyzes visual patterns and detects synthetic media with high confidence using deep learning.</p>
+    <div class="hero-btns">
+      <a href="#detect" class="btn-primary">🔍 Upload Image</a>
+      <a href="#how-it-works" class="btn-secondary">Learn More</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-val">94%</div><div class="stat-label">Accuracy</div></div>
+      <div class="stat"><div class="stat-val">120ms</div><div class="stat-label">Inference</div></div>
+      <div class="stat"><div class="stat-val">120K+</div><div class="stat-label">Images Trained</div></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="neural-net">
+      <svg viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Outer ring -->
+        <circle cx="160" cy="160" r="150" stroke="rgba(99,179,237,0.08)" stroke-width="1"/>
+        <circle cx="160" cy="160" r="110" stroke="rgba(167,139,250,0.1)" stroke-width="1" stroke-dasharray="4 8"/>
+        <circle cx="160" cy="160" r="70" stroke="rgba(99,179,237,0.12)" stroke-width="1"/>
+        <!-- Nodes -->
+        <circle cx="160" cy="20" r="5" fill="#63b3ed" opacity=".8"/>
+        <circle cx="280" cy="90" r="5" fill="#a78bfa" opacity=".8"/>
+        <circle cx="280" cy="230" r="5" fill="#63b3ed" opacity=".8"/>
+        <circle cx="160" cy="300" r="5" fill="#a78bfa" opacity=".8"/>
+        <circle cx="40" cy="230" r="5" fill="#63b3ed" opacity=".8"/>
+        <circle cx="40" cy="90" r="5" fill="#a78bfa" opacity=".8"/>
+        <!-- Inner nodes -->
+        <circle cx="215" cy="80" r="4" fill="#22d3ee" opacity=".6"/>
+        <circle cx="250" cy="160" r="4" fill="#22d3ee" opacity=".6"/>
+        <circle cx="215" cy="240" r="4" fill="#22d3ee" opacity=".6"/>
+        <circle cx="105" cy="240" r="4" fill="#22d3ee" opacity=".6"/>
+        <circle cx="70" cy="160" r="4" fill="#22d3ee" opacity=".6"/>
+        <circle cx="105" cy="80" r="4" fill="#22d3ee" opacity=".6"/>
+        <!-- Lines outer to inner -->
+        <line x1="160" y1="20" x2="215" y2="80" stroke="rgba(99,179,237,0.2)" stroke-width="1"/>
+        <line x1="280" y1="90" x2="250" y2="160" stroke="rgba(167,139,250,0.2)" stroke-width="1"/>
+        <line x1="280" y1="230" x2="215" y2="240" stroke="rgba(99,179,237,0.2)" stroke-width="1"/>
+        <line x1="160" y1="300" x2="105" y2="240" stroke="rgba(167,139,250,0.2)" stroke-width="1"/>
+        <line x1="40" y1="230" x2="70" y2="160" stroke="rgba(99,179,237,0.2)" stroke-width="1"/>
+        <line x1="40" y1="90" x2="105" y2="80" stroke="rgba(167,139,250,0.2)" stroke-width="1"/>
+        <!-- Cross lines -->
+        <line x1="215" y1="80" x2="250" y2="160" stroke="rgba(99,179,237,0.15)" stroke-width="1"/>
+        <line x1="250" y1="160" x2="215" y2="240" stroke="rgba(167,139,250,0.15)" stroke-width="1"/>
+        <line x1="215" y1="240" x2="105" y2="240" stroke="rgba(99,179,237,0.15)" stroke-width="1"/>
+        <line x1="105" y1="240" x2="70" y2="160" stroke="rgba(167,139,250,0.15)" stroke-width="1"/>
+        <line x1="70" y1="160" x2="105" y2="80" stroke="rgba(99,179,237,0.15)" stroke-width="1"/>
+        <line x1="105" y1="80" x2="215" y2="80" stroke="rgba(167,139,250,0.15)" stroke-width="1"/>
+        <!-- Center -->
+        <circle cx="160" cy="160" r="28" fill="rgba(59,130,246,0.08)" stroke="rgba(99,179,237,0.3)" stroke-width="1.5"/>
+        <circle cx="160" cy="160" r="14" fill="rgba(124,58,237,0.15)" stroke="rgba(167,139,250,0.4)" stroke-width="1.5"/>
+        <circle cx="160" cy="160" r="5" fill="#a78bfa"/>
+        <!-- Lines to center -->
+        <line x1="215" y1="80" x2="160" y2="160" stroke="rgba(99,179,237,0.1)" stroke-width="1"/>
+        <line x1="250" y1="160" x2="160" y2="160" stroke="rgba(167,139,250,0.1)" stroke-width="1"/>
+        <line x1="215" y1="240" x2="160" y2="160" stroke="rgba(99,179,237,0.1)" stroke-width="1"/>
+        <line x1="105" y1="240" x2="160" y2="160" stroke="rgba(167,139,250,0.1)" stroke-width="1"/>
+        <line x1="70" y1="160" x2="160" y2="160" stroke="rgba(99,179,237,0.1)" stroke-width="1"/>
+        <line x1="105" y1="80" x2="160" y2="160" stroke="rgba(167,139,250,0.1)" stroke-width="1"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ── DETECT / UPLOAD ── -->
+<section id="detect">
+  <div class="upload-wrapper">
+    <div class="sec-header fade-up">
+      <div class="sec-tag">Core Feature</div>
+      <h2>Detect Image</h2>
+      <p>Upload an image to instantly analyze whether it's real or AI-generated</p>
+    </div>
+    <div class="upload-card fade-up">
+      <!-- Drop Zone -->
+      <div class="drop-zone" id="dropZone">
+        <div class="drop-icon">📤</div>
+        <h3>Drag &amp; Drop Image Here</h3>
+        <p>or click to browse your files</p>
+        <label for="fileInput"><button class="browse-btn" onclick="document.getElementById('fileInput').click()">Browse File</button></label>
+        <div class="format-tags">
+          <span class="ftag">JPG</span>
+          <span class="ftag">PNG</span>
+          <span class="ftag">JPEG</span>
+          <span class="ftag">WEBP</span>
+          <span class="ftag">Max 10MB</span>
+        </div>
+      </div>
+      <input type="file" id="fileInput" accept="image/*"/>
+
+      <!-- Preview -->
+      <div class="preview-section" id="previewSection">
+        <div class="preview-img-wrap">
+          <img id="previewImg" src="" alt="Preview"/>
+        </div>
+        <div class="upload-actions">
+          <button class="btn-clear" id="clearBtn">✕ Clear</button>
+          <button class="btn-analyze active" id="analyzeBtn">🔍 Analyze Image</button>
+        </div>
+      </div>
+
+      <!-- Loading -->
+      <div class="loading-state" id="loadingState">
+        <div class="brain">🧠</div>
+        <div class="spinner-ring"></div>
+        <p>Analyzing image using deep learning…</p>
+        <p style="font-size:.78rem;color:var(--muted);margin-top:8px;font-family:'JetBrains Mono',monospace">Running CNN inference · Extracting features · Computing confidence</p>
+      </div>
+
+      <!-- Result -->
+      <div class="result-state" id="resultState">
+        <div class="result-badge" id="resultBadge"></div>
+        <div class="confidence-display">
+          <div class="conf-pct" id="confPct">--</div>
+          <div class="conf-label">Confidence Score</div>
+        </div>
+        <div class="prob-bars">
+          <div class="prob-row">
+            <div class="prob-header"><span>🟢 Real Image</span><span id="realPct">--%</span></div>
+            <div class="bar-track"><div class="bar-fill-real" id="barReal" style="width:0%"></div></div>
+          </div>
+          <div class="prob-row">
+            <div class="prob-header"><span>🔴 AI Generated</span><span id="fakePct">--%</span></div>
+            <div class="bar-track"><div class="bar-fill-fake" id="barFake" style="width:0%"></div></div>
+          </div>
+        </div>
+        <div class="result-timestamp" id="resultTimestamp"></div>
+        <div class="upload-actions" style="margin-top:16px">
+          <button class="btn-clear" id="resetBtn">↩ Analyze Another</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── EXPLAINABILITY ── -->
+<section id="explainability">
+  <div class="container">
+    <div class="sec-header fade-up">
+      <div class="sec-tag">Research Feature</div>
+      <h2>Explainability — Grad-CAM</h2>
+      <p>Visualize where the model focused to make its decision</p>
+    </div>
+    <div class="toggle-row fade-up">
+      <button class="toggle-btn active" onclick="toggleView(this,'original')">Original Image</button>
+      <button class="toggle-btn" onclick="toggleView(this,'heatmap')">Grad-CAM Heatmap</button>
+    </div>
+    <div class="explain-grid fade-up">
+      <div class="explain-card">
+        <div class="explain-card-header"><span>📷 Original Image</span><span style="font-size:.7rem;color:var(--muted)">Input</span></div>
+        <div class="explain-card-body">
+          <div class="placeholder-img">Upload an image to view</div>
+        </div>
+      </div>
+      <div class="explain-card">
+        <div class="explain-card-header"><span>🌡️ Grad-CAM Heatmap</span><span style="font-size:.7rem;color:var(--muted)">Activation Map</span></div>
+        <div class="explain-card-body">
+          <div class="placeholder-img heatmap-placeholder">Heatmap generated after analysis</div>
+        </div>
+      </div>
+    </div>
+    <div class="explain-note fade-up">
+      <strong>Model Explanation:</strong> The model focused on <strong>facial texture inconsistencies</strong>, <strong>unnatural skin smoothness</strong>, and <strong>background artifacts</strong> commonly found in GAN-generated images. Red regions indicate areas of highest activation.
+    </div>
+  </div>
+</section>
+
+<!-- ── MODEL INSIGHTS ── -->
+<section id="model-insights" style="padding:60px 0">
+  <div class="container">
+    <div class="sec-header fade-up">
+      <div class="sec-tag">Technical Info</div>
+      <h2>Model Insights</h2>
+    </div>
+    <div class="insights-card fade-up">
+      <div class="insights-header">
+        <div class="dot"></div>
+        <span>Model Status: Online · Ready</span>
+      </div>
+      <div class="insights-grid">
+        <div class="insight-item"><div class="insight-val">CNN / ResNet</div><div class="insight-key">Architecture</div></div>
+        <div class="insight-item"><div class="insight-val">224 × 224</div><div class="insight-key">Input Size</div></div>
+        <div class="insight-item"><div class="insight-val">PyTorch</div><div class="insight-key">Framework</div></div>
+        <div class="insight-item"><div class="insight-val">CIFAKE</div><div class="insight-key">Dataset</div></div>
+        <div class="insight-item"><div class="insight-val">94.3%</div><div class="insight-key">Train Accuracy</div></div>
+        <div class="insight-item"><div class="insight-val">~120ms</div><div class="insight-key">Inference Time</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── HISTORY ── -->
+<section id="history" style="padding:80px 0">
+  <div class="container">
+    <div class="sec-header fade-up">
+      <div class="sec-tag">Logs</div>
+      <h2>Detection History</h2>
+      <p>Recent image analysis results</p>
+    </div>
+    <div class="history-card fade-up">
+      <div class="history-header">
+        <h3>📋 Analysis Log</h3>
+        <button class="btn-clear-hist" id="clearHistBtn">Clear History</button>
+      </div>
+      <div class="history-scroll">
+        <table class="history-table" id="historyTable">
+          <thead>
+            <tr>
+              <th>Image Name</th>
+              <th>Result</th>
+              <th>Confidence</th>
+              <th>Date &amp; Time</th>
+            </tr>
+          </thead>
+          <tbody id="historyBody">
+            <tr><td colspan="4" style="text-align:center;color:var(--muted);padding:30px">No analysis history yet. Upload an image to get started.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── HOW IT WORKS ── -->
+<section id="how-it-works" style="padding:100px 0;background:linear-gradient(180deg,transparent,rgba(7,13,26,.5),transparent)">
+  <div class="container">
+    <div class="sec-header fade-up">
+      <div class="sec-tag">Process</div>
+      <h2>How It Works</h2>
+      <p>Five-step deep learning pipeline for synthetic media detection</p>
+    </div>
+    <div class="steps-timeline fade-up">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-icon">📤</div>
+        <h4>Image Upload</h4>
+        <p>User uploads JPG / PNG / WEBP image via drag-drop or browse</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-icon">⚙️</div>
+        <h4>Preprocessing</h4>
+        <p>Image is resized to 224×224, normalized and converted to tensor</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-icon">🔬</div>
+        <h4>Feature Extraction</h4>
+        <p>CNN layers extract deep visual features like texture, edges, artifacts</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-icon">🤖</div>
+        <h4>Classification</h4>
+        <p>Fully connected layers classify as Real or AI-Generated with confidence score</p>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-icon">🌡️</div>
+        <h4>Grad-CAM</h4>
+        <p>Activation heatmap highlights which image regions influenced the decision</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section id="about" style="padding:100px 0">
+  <div class="container">
+    <div class="sec-header fade-up">
+      <div class="sec-tag">About</div>
+      <h2>About The Project</h2>
+    </div>
+    <div class="about-grid fade-up">
+      <div class="about-text">
+        <h2>Problem Statement</h2>
+        <p>With the rapid advancement of Generative AI tools like MidJourney, DALL-E, and Stable Diffusion, AI-generated images have become indistinguishable from real photographs to the human eye. This poses serious risks in misinformation, deepfake fraud, and digital identity theft.</p>
+        <p>This project proposes a deep learning-based solution that can accurately classify images as real or AI-generated, providing a reliable tool for media verification.</p>
+        <h4 style="color:var(--blue);font-size:.85rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;margin-top:24px">Applications</h4>
+        <div class="app-tags">
+          <div class="app-tag"><span>📱</span> Social Media Moderation</div>
+          <div class="app-tag"><span>🔒</span> Cybersecurity</div>
+          <div class="app-tag"><span>📰</span> Journalism Verification</div>
+          <div class="app-tag"><span>⚖️</span> Legal Evidence</div>
+          <div class="app-tag"><span>🏦</span> Financial Fraud Detection</div>
+        </div>
+      </div>
+      <div class="about-cards">
+        <div class="about-card">
+          <h4>💡 Motivation</h4>
+          <p>The proliferation of AI-generated synthetic media is an emerging cybersecurity threat. Existing detection methods lack accessibility for non-technical users. This project bridges that gap with an easy-to-use web interface backed by a robust deep learning model.</p>
+        </div>
+        <div class="about-card">
+          <h4>🔮 Future Scope</h4>
+          <ul class="future-list">
+            <li>Video deepfake detection</li>
+            <li>Browser extension for real-time detection</li>
+            <li>Audio synthetic media detection</li>
+            <li>Mobile application (iOS &amp; Android)</li>
+            <li>API for third-party integrations</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TEAM ── -->
+<section id="team" style="padding:100px 0">
+  <div class="container">
+    <div class="sec-header fade-up">
+      <div class="sec-tag">Team</div>
+      <h2>Meet The Developer</h2>
+    </div>
+    <div class="team-card fade-up">
+      <div class="avatar">HP</div>
+      <h3>Harsh Prabhakar</h3>
+      <div class="role">AI Engineer &amp; Developer</div>
+      <div class="branch">B.Tech CSE (Artificial Intelligence) · Final Year</div>
+      <div class="team-badges">
+        <span class="tbadge">PyTorch</span>
+        <span class="tbadge">Deep Learning</span>
+        <span class="tbadge">React</span>
+        <span class="tbadge">Flask</span>
+        <span class="tbadge">Computer Vision</span>
+      </div>
+      <div class="team-divider"></div>
+      <div class="guide-label">Project Guide</div>
+      <div class="guide-name">Prof. [Guide Name] · Department of CSE (AI)</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-left">
+    <p><strong>AI Detect — Synthetic Media Detection</strong></p>
+    <p>Final Year B.Tech CSE (AI) Major Project · Harsh Prabhakar</p>
+    <p style="margin-top:6px">⚠️ This tool is developed for academic and research purposes only.</p>
+    <p>© 2025 AI Detect. All rights reserved.</p>
+  </div>
+  <div class="footer-right">
+    <a href="#" class="github-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+      GitHub Repository
+    </a>
+  </div>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>

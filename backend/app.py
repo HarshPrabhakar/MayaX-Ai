@@ -1,3 +1,7 @@
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
 from fastapi import FastAPI, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 import torch
@@ -18,7 +22,7 @@ app.add_middleware(
 )
 
 # Load model
-model = CNNModel()   # create model structure
+model = BetterCNN()   # create model structure
 model.load_state_dict(torch.load("model/detector.pt", map_location=torch.device('cpu')))
 model.eval()
 
